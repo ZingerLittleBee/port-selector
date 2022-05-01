@@ -27,7 +27,7 @@ const portCustomRangeValidation = (from?: number, to?: number) => {
     from && portValidationChain(from)
     to && portValidationChain(to)
     if ((from || from === 0) && to) if (from >= to) throw new Error('portTo must be bigger than portFrom')
-    if (to === 0) throw new Error('portTo must be not equal to 0')
+    if (to === 0) throw new Error('portTo must be greater than 0')
     if (from === 65535) throw new Error('portFrom must be less than 65535')
 }
 
