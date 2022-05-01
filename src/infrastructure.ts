@@ -1,4 +1,4 @@
-type Selector = {
+export type Selector = {
     checkTcp?: boolean
     checkUdp?: boolean
     portFrom?: number
@@ -17,24 +17,13 @@ type PortSelectorInRust = {
     selectFreePort: (select?: Selector) => number
 }
 
-const {
-    isFree,
-    isFreeTcp,
-    isFreeUdp,
-    randomFreePort,
-    randomFreeTcpPort,
-    randomFreeUdpPort,
-    selectFromGivenPort,
-    selectFreePort
+export const {
+    isFree: _isFree,
+    isFreeTcp: _isFreeTcp,
+    isFreeUdp: _isFreeUdp,
+    randomFreePort: _randomFreePort,
+    randomFreeTcpPort: _randomFreeTcpPort,
+    randomFreeUdpPort: _randomFreeUdpPort,
+    selectFromGivenPort: _selectFromGivenPort,
+    selectFreePort: _selectFreePort
 }: PortSelectorInRust = require('../index.node')
-
-export {
-    isFree,
-    isFreeTcp,
-    isFreeUdp,
-    randomFreePort,
-    randomFreeTcpPort,
-    randomFreeUdpPort,
-    selectFromGivenPort,
-    selectFreePort
-}
