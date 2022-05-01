@@ -12,6 +12,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rand = "0.8.5"
+port-selector = "0.1.4"
 
 [dependencies.neon]
 version = "0.10"

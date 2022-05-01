@@ -5,3 +5,6 @@ index.node
 npm-debug.log*
 .idea
 dist
+.history
+Cargo.lock
+pnpm-lock.yaml

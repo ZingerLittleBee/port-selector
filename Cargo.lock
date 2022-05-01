@@ -81,6 +81,16 @@ name = "port-selector"
 version = "0.1.0"
 dependencies = [
  "neon",
+ "port-selector 0.1.4",
+ "rand",
+]
+
+[[package]]
+name = "port-selector"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6676dbc81e634d79a9f63ff61c7a36f186a0fd5f61d0188adc539c219ecdd54f"
+dependencies = [
  "rand",
 ]
 

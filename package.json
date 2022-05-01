@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.node",
   "scripts": {
+    "compile": "pnpm i && tsup",
     "commit": "git-cz",
     "build": "cargo-cp-artifact -nc index.node -- cargo build --message-format=json-render-diagnostics",
     "build-debug": "npm run build --",

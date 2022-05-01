@@ -1,101 +1,124 @@
 use neon::prelude::*;
-use rand::prelude::*;
-use std::net::{
-    Ipv4Addr, Ipv6Addr, SocketAddrV4, SocketAddrV6, TcpListener, ToSocketAddrs, UdpSocket,
-};
+use port_selector::*;
 
-pub type Port = u16;
-
-// Try to bind to a socket using UDP
-fn test_bind_udp<A: ToSocketAddrs>(addr: A) -> Option<Port> {
-    Some(UdpSocket::bind(addr).ok()?.local_addr().ok()?.port())
+pub fn is_free_port(mut cx: FunctionContext) -> JsResult<JsBoolean> {
+    let port = cx.argument::<JsNumber>(0)?.value(&mut cx) as Port;
+    Ok(cx.boolean(is_free(port)))
 }
 
-// Try to bind to a socket using TCP
-fn test_bind_tcp<A: ToSocketAddrs>(addr: A) -> Option<Port> {
-    Some(TcpListener::bind(addr).ok()?.local_addr().ok()?.port())
+pub fn is_free_tcp_port(mut cx: FunctionContext) -> JsResult<JsBoolean> {
+    let port = cx.argument::<JsNumber>(0)?.value(&mut cx) as Port;
+    Ok(cx.boolean(is_free_tcp(port)))
 }
 
-/// Asks the OS for a free port
-fn ask_free_tcp_port() -> Option<Port> {
-    let ipv4 = SocketAddrV4::new(Ipv4Addr::UNSPECIFIED, 0);
-    let ipv6 = SocketAddrV6::new(Ipv6Addr::UNSPECIFIED, 0, 0, 0);
-
-    test_bind_tcp(ipv6).or_else(|| test_bind_tcp(ipv4))
+pub fn is_free_udp_port(mut cx: FunctionContext) -> JsResult<JsBoolean> {
+    let port = cx.argument::<JsNumber>(0)?.value(&mut cx) as Port;
+    Ok(cx.boolean(is_free_udp(port)))
 }
 
-/// Check if a port is free on TCP
-fn _is_free_tcp(port: Port) -> bool {
-    let ipv4 = SocketAddrV4::new(Ipv4Addr::UNSPECIFIED, port);
-    let ipv6 = SocketAddrV6::new(Ipv6Addr::UNSPECIFIED, port, 0, 0);
-
-    test_bind_tcp(ipv6).is_some() && test_bind_tcp(ipv4).is_some()
+pub fn _random_free_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
+    Ok(cx.number(random_free_port().unwrap()))
 }
 
-fn _is_free_udp(port: Port) -> bool {
-    let ipv4 = SocketAddrV4::new(Ipv4Addr::UNSPECIFIED, port);
-    let ipv6 = SocketAddrV6::new(Ipv6Addr::UNSPECIFIED, port, 0, 0);
-
-    test_bind_udp(ipv6).is_some() && test_bind_udp(ipv4).is_some()
+pub fn _random_free_tcp_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
+    Ok(cx.number(random_free_tcp_port().unwrap()))
 }
 
-/// Check if a port is free on both TCP and UDP
-fn _is_free(port: Port) -> bool {
-    _is_free_tcp(port) && _is_free_udp(port)
+pub fn _random_free_udp_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
+    Ok(cx.number(random_free_udp_port().unwrap()))
 }
 
-/// Picks an available port that is available on both TCP and UDP
-/// ```rust
-/// use portpicker::pick_unused_port;
-/// let port: u16 = pick_unused_port().expect("No ports free");
-/// ```
-pub fn pick_unused_port() -> Option<Port> {
-    let mut rng = rand::thread_rng();
+pub fn _select_from_given_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
+    let port = cx.argument::<JsNumber>(0)?.value(&mut cx) as Port;
+    Ok(cx.number(select_from_given_port(port).unwrap()))
+}
 
-    // Try random port first
-    for _ in 0..10 {
-        let port = rng.gen_range(15000..25000);
-        if _is_free(port) {
-            return Some(port);
+pub fn _select_free_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
+    let args = cx.argument_opt(0);
+
+    let mut selector: Selector = Default::default();
+
+    if args.is_some() {
+        let arg = args
+            .unwrap()
+            .downcast::<JsObject, FunctionContext>(&mut cx)
+            .unwrap();
+
+        match arg.get_value(&mut cx, "checkTcp") {
+            Err(e) => {
+                eprintln!("{}", e)
+            }
+            Ok(value) => {
+                let value_option = value.downcast::<JsBoolean, FunctionContext>(&mut cx).ok();
+                if value_option.is_some() {
+                    selector.check_tcp = value_option.unwrap().value(&mut cx);
+                }
+            }
         }
-    }
 
-    // Ask the OS for a port
-    for _ in 0..10 {
-        if let Some(port) = ask_free_tcp_port() {
-            // Test that the udp port is free as well
-            if is_free_udp(port) {
-                return Some(port);
+        match arg.get_value(&mut cx, "checkUdp") {
+            Err(e) => {
+                eprintln!("{}", e)
+            }
+            Ok(value) => {
+                let value_option = value.downcast::<JsBoolean, FunctionContext>(&mut cx).ok();
+                if value_option.is_some() {
+                    selector.check_udp = value_option.unwrap().value(&mut cx);
+                }
+            }
+        }
+
+        match arg.get_value(&mut cx, "portFrom") {
+            Err(e) => {
+                eprintln!("{}", e)
+            }
+            Ok(value) => {
+                let value_option = value.downcast::<JsNumber, FunctionContext>(&mut cx).ok();
+                if value_option.is_some() {
+                    selector.port_range.0 = value_option.unwrap().value(&mut cx) as Port;
+                }
+            }
+        }
+
+        match arg.get_value(&mut cx, "portTo") {
+            Err(e) => {
+                eprintln!("{}", e)
+            }
+            Ok(value) => {
+                let value_option = value.downcast::<JsNumber, FunctionContext>(&mut cx).ok();
+                if value_option.is_some() {
+                    selector.port_range.1 = value_option.unwrap().value(&mut cx) as Port;
+                }
+            }
+        }
+
+        match arg.get_value(&mut cx, "maxRandomTimes") {
+            Err(e) => {
+                eprintln!("{}", e)
+            }
+            Ok(value) => {
+                let value_option = value.downcast::<JsNumber, FunctionContext>(&mut cx).ok();
+                if value_option.is_some() {
+                    selector.max_random_times = value_option.unwrap().value(&mut cx) as Port;
+                }
             }
         }
     }
 
-    // Give up
-    None
-}
+    println!("selector: {:#?}", selector);
 
-/// Check if a port is free on UDP
-pub fn is_free_udp(port: Port) -> bool {
-    let ipv4 = SocketAddrV4::new(Ipv4Addr::UNSPECIFIED, port);
-    let ipv6 = SocketAddrV6::new(Ipv6Addr::UNSPECIFIED, port, 0, 0);
-
-    test_bind_udp(ipv6).is_some() && test_bind_udp(ipv4).is_some()
-}
-
-/// Check if a port is free on TCP
-pub fn is_free_tcp(mut cx: FunctionContext) -> JsResult<JsBoolean> {
-    let port = cx.argument::<JsNumber>(0)?.value(&mut cx);
-    Ok(cx.boolean(_is_free_tcp(port as u16)))
-}
-
-pub fn is_free(mut cx: FunctionContext) -> JsResult<JsBoolean> {
-    let port = cx.argument::<JsNumber>(0)?.value(&mut cx);
-    Ok(cx.boolean(_is_free(port as u16)))
+    Ok(cx.number(select_free_port(selector).unwrap()))
 }
 
 #[neon::main]
 fn main(mut cx: ModuleContext) -> NeonResult<()> {
-    cx.export_function("isFreeTcp", is_free_tcp)?;
-    cx.export_function("isFree", is_free)?;
+    cx.export_function("isFree", is_free_port)?;
+    cx.export_function("isFreeTcp", is_free_tcp_port)?;
+    cx.export_function("isFreeUdp", is_free_udp_port)?;
+    cx.export_function("randomFreePort", _random_free_port)?;
+    cx.export_function("randomFreeTcpPort", _random_free_tcp_port)?;
+    cx.export_function("randomFreeUdpPort", _random_free_udp_port)?;
+    cx.export_function("selectFromGivenPort", _select_from_given_port)?;
+    cx.export_function("selectFreePort", _select_free_port)?;
     Ok(())
 }
