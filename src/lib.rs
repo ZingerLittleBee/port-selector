@@ -104,9 +104,6 @@ pub fn _select_free_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
             }
         }
     }
-
-    println!("selector: {:#?}", selector);
-
     Ok(cx.number(select_free_port(selector).unwrap()))
 }
 
