@@ -1,11 +1,11 @@
-Language : [🇺🇸 English](./README.md) | 🇨🇳 简体中文
+Language : [🇺🇸 English](https://github.com/ZingerLittleBee/port-selector/blob/main/README.md) | 🇨🇳 简体中文
 
 
 <h1 align="center">port-selector</h1>
 <div align="center">
     
 [![NPM Version](https://img.shields.io/npm/v/port-selector)](https://www.npmjs.com/package/port-selector)
-![NPM Downloads](https://img.shields.io/npm/dt/port-selector)
+[![NPM Downloads](https://img.shields.io/npm/dt/port-selector)](https://www.npmjs.com/package/port-selector)
 ![Bundle Size](https://img.shields.io/bundlephobia/minzip/port-selector)
 
 </div>
@@ -13,7 +13,7 @@ Language : [🇺🇸 English](./README.md) | 🇨🇳 简体中文
     
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![GitHub Actions CI](https://img.shields.io/github/workflow/status/ZingerLittleBee/port-selector/Test%20CI)](https://github.com/ZingerLittleBee/port-selector/actions)
-[![LICENSE](https://img.shields.io/npm/l/port-selector)](./LICENSE)
+![License](https://img.shields.io/github/license/ZingerLittleBee/port-selector)
     
 </div>
 

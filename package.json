@@ -1,6 +1,6 @@
 {
   "name": "port-selector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -19,6 +19,14 @@
   },
   "author": "ZingerLittleBee",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZingerLittleBee/port-selector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZingerLittleBee/port-selector/issues"
+  },
+  "homepage": "https://github.com/ZingerLittleBee/port-selector",
   "devDependencies": {
     "@commitlint/cli": "16.2.4",
     "@commitlint/config-conventional": "16.2.4",
