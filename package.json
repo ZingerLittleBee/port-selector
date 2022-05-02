@@ -1,10 +1,12 @@
 {
   "name": "port-selector",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.node",
+  "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "compile": "pnpm i && tsup",
+    "compile": "npm i && tsup",
     "commit": "git-cz",
     "build": "cargo-cp-artifact -nc index.node -- cargo build --message-format=json-render-diagnostics",
     "build-debug": "npm run build --",

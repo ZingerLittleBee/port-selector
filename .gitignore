@@ -8,3 +8,4 @@ dist
 .history
 Cargo.lock
 pnpm-lock.yaml
+package-lock.json
