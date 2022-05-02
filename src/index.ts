@@ -54,6 +54,11 @@ export const randomFreeTcpPort = () => _randomFreeTcpPort()
 
 export const randomFreeUdpPort = () => _randomFreeUdpPort()
 
+export const selectFromGivenPort = (starterPort: number) => {
+    portValidationChain(starterPort)
+    return _selectFromGivenPort(starterPort)
+}
+
 export const selectFreePort = (selector?: Selector) => {
     if (selector) {
         portCustomRangeValidation(selector.portFrom, selector.portTo)
@@ -61,9 +66,4 @@ export const selectFreePort = (selector?: Selector) => {
     } else {
         return _selectFreePort()
     }
-}
-
-export const selectFromGivenPort = (starterPort: number) => {
-    portValidationChain(starterPort)
-    return _selectFromGivenPort(starterPort)
 }
