@@ -1,4 +1,5 @@
-Language : 🇺🇸 English | [🇨🇳 简体中文](./README.zh-CN.md)
+Language : [🇺🇸 English](./README.md) | 🇨🇳 简体中文
+
 
 <h1 align="center">port-selector</h1>
 <div align="center">
@@ -17,8 +18,7 @@ Language : 🇺🇸 English | [🇨🇳 简体中文](./README.zh-CN.md)
 </div>
 
 ## Overview
-
-`port-selector` is a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.
+`port-selector` 是一个使用 TypeScript 编写、底层由 Rust 实现的跨平台 NodeJS 库, 主要提供端口可用性检查和根据条件筛选端口的功能.
 
 ## Install
 ```shell
@@ -50,71 +50,69 @@ import {
 ## Documentation
 
 ### `isFree`
-Check whether the port is not used on TCP and UDP
+检查端口在 tcp && udp 上是否未使用
 ```ts
 function isFree(port: number): boolean
 ```
 
 ### `isFreeTcp`
-Check whether the port is not used on TCP
+检查端口在 tcp 上是否未使用
 ```ts
 function isFreeTcp(port: number): boolean
 ```
 
 ### `isFreeUdp`
-Check whether the port is not used on UDP
+检查端口在 udp 上是否未使用
 ```ts
 function isFreeUdp(port: number): boolean
 ```
 
 ### `randomFreePort`
-The system randomly assigns available TCP and UDP ports
+由系统随机分配可用 tcp && udp 端口
 ```ts
 function randomFreePort(): number
 ```
 
 ### `randomFreeTcpPort`
-The system randomly assigns available TCP ports
+由系统随机分配可用 tcp 端口
 ```ts
 function randomFreeTcpPort(): number
 ```
 
 ### `randomFreeUdpPort`
-The system randomly assigns available UDP ports
+由系统随机分配可用 udp 端口
 ```ts
 function randomFreeUdpPort(): number
 ```
 
 ### `selectFromGivenPort`
-Check from `starterPort` and return the first available port
+从 `starterPort` 开始检查, 返回第一个可用端口
 
-Return if `starterPort` is available; Otherwise `starterPort += starterPort` until the port is available
+如果 `starterPort` 可用, 则返回; 否则 `starterPort += starterPort`, 直到端口可用
 ```ts
 function selectFromGivenPort(starterPort: number): number
 ```
 
 ### `selectFreePort`
-Gets a matching port based on the `Selector` parameter constraint
+根据 `Selector` 参数约束获取一个满足条件的端口
 ```ts
 function selectFreePort(selector: Selector): number
 ```
 
 ```ts
 export type Selector = {
-    // Check whether the port is available on TCP.
-    // The default value is true.
+    // 是否检查端口在 tcp 上可用, 默认值 true
     checkTcp?: boolean
-    // Check whether the port is available on UDP.
-    // The default value is true.
+    // 是否检查端口在 udp 上可用, 默认值 true
     checkUdp?: boolean
-    // Set the generated port range, starting value
-    // The default value is 0.
+    // 设置生成的端口范围, 起始值
+    // 默认值: 0
     portFrom?: number
-    // Set the generated port range, end value
-    // The default value is 65535.
+    // 设置生成的端口范围, 结束值
+    // 默认值: 65535
     portTo?: number
-    // Maximum number of random times. Default value: 100
-    // If no available port number is found within the maximum random number of loops, None is returned
+    // 最大随机次数, 默认值 100
+    // 如果在最大随机次数的循环之内都没有找到可用端口号, 则返回 None
     maxRandomTimes?: number
 }
 ```
