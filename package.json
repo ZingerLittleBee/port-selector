@@ -14,7 +14,7 @@
     "rs:test": "cargo test",
     "test": "jest",
     "lint:script": "eslint --ext .js,.ts --fix --quiet ./",
-    "postinstall": "husky install"
+    "husky": "husky install"
   },
   "author": "ZingerLittleBee",
   "license": "MIT",
