@@ -1,6 +1,6 @@
 {
   "name": "port-selector",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
