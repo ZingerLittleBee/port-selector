@@ -1,121 +1,103 @@
-use neon::prelude::*;
-use port_selector::*;
+#![deny(clippy::all)]
 
-pub fn is_free_port(mut cx: FunctionContext) -> JsResult<JsBoolean> {
-    let port = cx.argument::<JsNumber>(0)?.value(&mut cx) as Port;
-    Ok(cx.boolean(is_free(port)))
+use port_selector::{
+  is_free, is_free_tcp, is_free_udp, random_free_port, random_free_tcp_port, random_free_udp_port,
+  select_free_port, select_from_given_port, Port, Selector,
+};
+
+#[macro_use]
+extern crate napi_derive;
+
+#[napi(js_name = "isFree")]
+pub fn _is_free(port: u32) -> bool {
+  is_free((port as Port).into())
 }
 
-pub fn is_free_tcp_port(mut cx: FunctionContext) -> JsResult<JsBoolean> {
-    let port = cx.argument::<JsNumber>(0)?.value(&mut cx) as Port;
-    Ok(cx.boolean(is_free_tcp(port)))
+#[napi(js_name = "isFreeTcp")]
+pub fn _is_free_tcp(port: u32) -> bool {
+  is_free_tcp((port as Port).into())
 }
 
-pub fn is_free_udp_port(mut cx: FunctionContext) -> JsResult<JsBoolean> {
-    let port = cx.argument::<JsNumber>(0)?.value(&mut cx) as Port;
-    Ok(cx.boolean(is_free_udp(port)))
+#[napi(js_name = "isFreeUdp")]
+pub fn _is_free_udp(port: u32) -> bool {
+  is_free_udp((port as Port).into())
 }
 
-pub fn _random_free_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
-    Ok(cx.number(random_free_port().unwrap()))
+#[napi(js_name = "randomFreePort")]
+pub fn _random_free_port() -> Option<u32> {
+  match random_free_port() {
+    Some(r) => Some(r as u32),
+    None => None,
+  }
 }
 
-pub fn _random_free_tcp_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
-    Ok(cx.number(random_free_tcp_port().unwrap()))
+#[napi(js_name = "randomFreeTcpPort")]
+pub fn _random_free_tcp_port() -> Option<u32> {
+  match random_free_tcp_port() {
+    Some(r) => Some(r as u32),
+    None => None,
+  }
 }
 
-pub fn _random_free_udp_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
-    Ok(cx.number(random_free_udp_port().unwrap()))
+#[napi(js_name = "randomFreeUdpPort")]
+pub fn _random_free_udp_port() -> Option<u32> {
+  match random_free_udp_port() {
+    Some(r) => Some(r as u32),
+    None => None,
+  }
 }
 
-pub fn _select_from_given_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
-    let port = cx.argument::<JsNumber>(0)?.value(&mut cx) as Port;
-    Ok(cx.number(select_from_given_port(port).unwrap()))
+#[napi(js_name = "selectFromGivenPort")]
+pub fn _select_from_given_port(port: u32) -> Option<u32> {
+  match select_from_given_port(port as Port) {
+    Some(r) => Some(r as u32),
+    None => None,
+  }
 }
 
-pub fn _select_free_port(mut cx: FunctionContext) -> JsResult<JsNumber> {
-    let args = cx.argument_opt(0);
+#[napi(object)]
+pub struct _Selector {
+  pub check_tcp: Option<bool>,
+  pub check_udp: Option<bool>,
+  pub port_from: Option<u32>,
+  pub port_to: Option<u32>,
+  pub max_random_times: Option<u32>,
+}
 
-    let mut selector: Selector = Default::default();
+#[napi]
+pub fn _select_free_port(selector: Option<_Selector>) -> Option<u32> {
+  let mut _selector: Selector = Default::default();
 
-    if args.is_some() {
-        let arg = args
-            .unwrap()
-            .downcast::<JsObject, FunctionContext>(&mut cx)
-            .unwrap();
-
-        match arg.get_value(&mut cx, "checkTcp") {
-            Err(e) => {
-                eprintln!("{}", e)
-            }
-            Ok(value) => {
-                let value_option = value.downcast::<JsBoolean, FunctionContext>(&mut cx).ok();
-                if value_option.is_some() {
-                    selector.check_tcp = value_option.unwrap().value(&mut cx);
-                }
-            }
+  if selector.is_some() {
+    match selector.unwrap() {
+      _Selector {
+        check_tcp,
+        check_udp,
+        port_from,
+        port_to,
+        max_random_times,
+      } => {
+        if check_tcp.is_some() {
+          _selector.check_tcp = check_tcp.unwrap();
         }
-
-        match arg.get_value(&mut cx, "checkUdp") {
-            Err(e) => {
-                eprintln!("{}", e)
-            }
-            Ok(value) => {
-                let value_option = value.downcast::<JsBoolean, FunctionContext>(&mut cx).ok();
-                if value_option.is_some() {
-                    selector.check_udp = value_option.unwrap().value(&mut cx);
-                }
-            }
+        if check_udp.is_some() {
+          _selector.check_udp = check_udp.unwrap();
         }
-
-        match arg.get_value(&mut cx, "portFrom") {
-            Err(e) => {
-                eprintln!("{}", e)
-            }
-            Ok(value) => {
-                let value_option = value.downcast::<JsNumber, FunctionContext>(&mut cx).ok();
-                if value_option.is_some() {
-                    selector.port_range.0 = value_option.unwrap().value(&mut cx) as Port;
-                }
-            }
+        if port_from.is_some() {
+          _selector.port_range.0 = port_from.unwrap() as Port;
         }
-
-        match arg.get_value(&mut cx, "portTo") {
-            Err(e) => {
-                eprintln!("{}", e)
-            }
-            Ok(value) => {
-                let value_option = value.downcast::<JsNumber, FunctionContext>(&mut cx).ok();
-                if value_option.is_some() {
-                    selector.port_range.1 = value_option.unwrap().value(&mut cx) as Port;
-                }
-            }
+        if port_to.is_some() {
+          _selector.port_range.1 = port_to.unwrap() as Port;
         }
-
-        match arg.get_value(&mut cx, "maxRandomTimes") {
-            Err(e) => {
-                eprintln!("{}", e)
-            }
-            Ok(value) => {
-                let value_option = value.downcast::<JsNumber, FunctionContext>(&mut cx).ok();
-                if value_option.is_some() {
-                    selector.max_random_times = value_option.unwrap().value(&mut cx) as Port;
-                }
-            }
+        if max_random_times.is_some() {
+          _selector.max_random_times = max_random_times.unwrap() as Port;
         }
+      }
     }
-    Ok(cx.number(select_free_port(selector).unwrap()))
-}
+  }
 
-#[neon::main]
-fn main(mut cx: ModuleContext) -> NeonResult<()> {
-    cx.export_function("isFree", is_free_port)?;
-    cx.export_function("isFreeTcp", is_free_tcp_port)?;
-    cx.export_function("isFreeUdp", is_free_udp_port)?;
-    cx.export_function("randomFreePort", _random_free_port)?;
-    cx.export_function("randomFreeTcpPort", _random_free_tcp_port)?;
-    cx.export_function("randomFreeUdpPort", _random_free_udp_port)?;
-    cx.export_function("selectFromGivenPort", _select_from_given_port)?;
-    cx.export_function("selectFreePort", _select_free_port)?;
-    Ok(())
+  match select_free_port(_selector) {
+    Some(p) => Some(p as u32),
+    None => None,
+  }
 }

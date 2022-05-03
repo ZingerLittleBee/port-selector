@@ -1,5 +1,5 @@
 target
-index.node
+*.node
 **/node_modules
 **/.DS_Store
 npm-debug.log*
@@ -9,3 +9,5 @@ dist
 Cargo.lock
 pnpm-lock.yaml
 package-lock.json
+index.d.ts
+index.js
