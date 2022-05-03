@@ -1,3 +1,3 @@
-# `na-linux-arm-gnueabihf`
+# `port-selector-linux-arm-gnueabihf`
 
-This is the **armv7-unknown-linux-gnueabihf** binary for `na`
+This is the **armv7-unknown-linux-gnueabihf** binary for `port-selector`

@@ -1,3 +1,3 @@
-# `na-linux-x64-musl`
+# `port-selector-linux-x64-musl`
 
-This is the **x86_64-unknown-linux-musl** binary for `na`
+This is the **x86_64-unknown-linux-musl** binary for `port-selector`

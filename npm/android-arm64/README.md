@@ -1,3 +1,3 @@
-# `na-android-arm64`
+# `port-selector-android-arm64`
 
-This is the **aarch64-linux-android** binary for `na`
+This is the **aarch64-linux-android** binary for `port-selector`

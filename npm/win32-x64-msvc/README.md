@@ -1,3 +1,3 @@
-# `na-win32-x64-msvc`
+# `port-selector-win32-x64-msvc`
 
-This is the **x86_64-pc-windows-msvc** binary for `na`
+This is the **x86_64-pc-windows-msvc** binary for `port-selector`

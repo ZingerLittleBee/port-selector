@@ -1,18 +1,30 @@
 {
-  "name": "na-linux-arm-gnueabihf",
-  "version": "0.0.0",
+  "name": "port-selector-linux-arm-gnueabihf",
+  "version": "0.1.4",
   "os": [
     "linux"
   ],
   "cpu": [
     "arm"
   ],
-  "main": "na.linux-arm-gnueabihf.node",
+  "main": "port-selector.linux-arm-gnueabihf.node",
   "files": [
-    "na.linux-arm-gnueabihf.node"
+    "port-selector.linux-arm-gnueabihf.node"
   ],
+  "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
+  "keywords": [
+    "port",
+    "check",
+    "select"
+  ],
+  "author": "ZingerLittleBee",
+  "homepage": "https://github.com/ZingerLittleBee/port-selector",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
+  },
+  "repository": "https://github.com/ZingerLittleBee/port-selector",
+  "bugs": {
+    "url": "https://github.com/ZingerLittleBee/port-selector/issues"
   }
 }

@@ -1,3 +1,3 @@
-# `na-linux-arm64-gnu`
+# `port-selector-linux-arm64-gnu`
 
-This is the **aarch64-unknown-linux-gnu** binary for `na`
+This is the **aarch64-unknown-linux-gnu** binary for `port-selector`

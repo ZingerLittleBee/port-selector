@@ -1,18 +1,30 @@
 {
-  "name": "na-win32-ia32-msvc",
-  "version": "0.0.0",
+  "name": "port-selector-win32-ia32-msvc",
+  "version": "0.1.4",
   "os": [
     "win32"
   ],
   "cpu": [
     "ia32"
   ],
-  "main": "na.win32-ia32-msvc.node",
+  "main": "port-selector.win32-ia32-msvc.node",
   "files": [
-    "na.win32-ia32-msvc.node"
+    "port-selector.win32-ia32-msvc.node"
   ],
+  "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
+  "keywords": [
+    "port",
+    "check",
+    "select"
+  ],
+  "author": "ZingerLittleBee",
+  "homepage": "https://github.com/ZingerLittleBee/port-selector",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
+  },
+  "repository": "https://github.com/ZingerLittleBee/port-selector",
+  "bugs": {
+    "url": "https://github.com/ZingerLittleBee/port-selector/issues"
   }
 }

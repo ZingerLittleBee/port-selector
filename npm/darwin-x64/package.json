@@ -1,18 +1,30 @@
 {
-  "name": "na-darwin-x64",
-  "version": "0.0.0",
+  "name": "port-selector-darwin-x64",
+  "version": "0.1.4",
   "os": [
     "darwin"
   ],
   "cpu": [
     "x64"
   ],
-  "main": "na.darwin-x64.node",
+  "main": "port-selector.darwin-x64.node",
   "files": [
-    "na.darwin-x64.node"
+    "port-selector.darwin-x64.node"
   ],
+  "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
+  "keywords": [
+    "port",
+    "check",
+    "select"
+  ],
+  "author": "ZingerLittleBee",
+  "homepage": "https://github.com/ZingerLittleBee/port-selector",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
+  },
+  "repository": "https://github.com/ZingerLittleBee/port-selector",
+  "bugs": {
+    "url": "https://github.com/ZingerLittleBee/port-selector/issues"
   }
 }

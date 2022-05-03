@@ -1,3 +1,3 @@
-# `na-freebsd-x64`
+# `port-selector-freebsd-x64`
 
-This is the **x86_64-unknown-freebsd** binary for `na`
+This is the **x86_64-unknown-freebsd** binary for `port-selector`

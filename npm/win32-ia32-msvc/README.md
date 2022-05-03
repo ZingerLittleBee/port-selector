@@ -1,3 +1,3 @@
-# `na-win32-ia32-msvc`
+# `port-selector-win32-ia32-msvc`
 
-This is the **i686-pc-windows-msvc** binary for `na`
+This is the **i686-pc-windows-msvc** binary for `port-selector`

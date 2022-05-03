@@ -1,19 +1,31 @@
 {
-  "name": "na-linux-arm64-musl",
-  "version": "0.0.0",
+  "name": "port-selector-linux-arm64-musl",
+  "version": "0.1.4",
   "os": [
     "linux"
   ],
   "cpu": [
     "arm64"
   ],
-  "main": "na.linux-arm64-musl.node",
+  "main": "port-selector.linux-arm64-musl.node",
   "files": [
-    "na.linux-arm64-musl.node"
+    "port-selector.linux-arm64-musl.node"
   ],
+  "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
+  "keywords": [
+    "port",
+    "check",
+    "select"
+  ],
+  "author": "ZingerLittleBee",
+  "homepage": "https://github.com/ZingerLittleBee/port-selector",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
+  },
+  "repository": "https://github.com/ZingerLittleBee/port-selector",
+  "bugs": {
+    "url": "https://github.com/ZingerLittleBee/port-selector/issues"
   },
   "libc": [
     "musl"

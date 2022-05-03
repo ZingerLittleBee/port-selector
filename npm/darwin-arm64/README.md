@@ -1,3 +1,3 @@
-# `na-darwin-arm64`
+# `port-selector-darwin-arm64`
 
-This is the **aarch64-apple-darwin** binary for `na`
+This is the **aarch64-apple-darwin** binary for `port-selector`
