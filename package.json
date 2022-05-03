@@ -1,7 +1,12 @@
 {
-    "name": "@forwardx/port-selector",
+    "name": "port-selector",
     "version": "0.1.4",
     "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
+    "keywords": [
+        "port",
+        "check",
+        "select"
+    ],
     "main": "index.js",
     "types": "index.d.ts",
     "napi": {
