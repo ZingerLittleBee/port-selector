@@ -11,3 +11,4 @@ pnpm-lock.yaml
 package-lock.json
 index.d.ts
 index.js
+coverage
