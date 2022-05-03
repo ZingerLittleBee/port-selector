@@ -11,10 +11,10 @@ export function randomFreeTcpPort(): number | null
 export function randomFreeUdpPort(): number | null
 export function selectFromGivenPort(port: number): number | null
 export interface Selector {
-    checkTcp?: boolean
-    checkUdp?: boolean
-    portFrom?: number
-    portTo?: number
-    maxRandomTimes?: number
+  checkTcp?: boolean
+  checkUdp?: boolean
+  portFrom?: number
+  portTo?: number
+  maxRandomTimes?: number
 }
 export function selectFreePort(selector?: Selector | undefined | null): number | null

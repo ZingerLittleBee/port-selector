@@ -30,7 +30,7 @@ case 'android':
             if (localFileExisted) {
                 nativeBinding = require('./port-selector.android-arm64.node')
             } else {
-                nativeBinding = require('@forwardx/port-selector-android-arm64')
+                nativeBinding = require('port-selector-android-arm64')
             }
         } catch (e) {
             loadError = e
@@ -42,7 +42,7 @@ case 'android':
             if (localFileExisted) {
                 nativeBinding = require('./port-selector.android-arm-eabi.node')
             } else {
-                nativeBinding = require('@forwardx/port-selector-android-arm-eabi')
+                nativeBinding = require('port-selector-android-arm-eabi')
             }
         } catch (e) {
             loadError = e
@@ -55,36 +55,42 @@ case 'android':
 case 'win32':
     switch (arch) {
     case 'x64':
-        localFileExisted = existsSync(join(__dirname, 'port-selector.win32-x64-msvc.node'))
+        localFileExisted = existsSync(
+            join(__dirname, 'port-selector.win32-x64-msvc.node')
+        )
         try {
             if (localFileExisted) {
                 nativeBinding = require('./port-selector.win32-x64-msvc.node')
             } else {
-                nativeBinding = require('@forwardx/port-selector-win32-x64-msvc')
+                nativeBinding = require('port-selector-win32-x64-msvc')
             }
         } catch (e) {
             loadError = e
         }
         break
     case 'ia32':
-        localFileExisted = existsSync(join(__dirname, 'port-selector.win32-ia32-msvc.node'))
+        localFileExisted = existsSync(
+            join(__dirname, 'port-selector.win32-ia32-msvc.node')
+        )
         try {
             if (localFileExisted) {
                 nativeBinding = require('./port-selector.win32-ia32-msvc.node')
             } else {
-                nativeBinding = require('@forwardx/port-selector-win32-ia32-msvc')
+                nativeBinding = require('port-selector-win32-ia32-msvc')
             }
         } catch (e) {
             loadError = e
         }
         break
     case 'arm64':
-        localFileExisted = existsSync(join(__dirname, 'port-selector.win32-arm64-msvc.node'))
+        localFileExisted = existsSync(
+            join(__dirname, 'port-selector.win32-arm64-msvc.node')
+        )
         try {
             if (localFileExisted) {
                 nativeBinding = require('./port-selector.win32-arm64-msvc.node')
             } else {
-                nativeBinding = require('@forwardx/port-selector-win32-arm64-msvc')
+                nativeBinding = require('port-selector-win32-arm64-msvc')
             }
         } catch (e) {
             loadError = e
@@ -102,19 +108,21 @@ case 'darwin':
             if (localFileExisted) {
                 nativeBinding = require('./port-selector.darwin-x64.node')
             } else {
-                nativeBinding = require('@forwardx/port-selector-darwin-x64')
+                nativeBinding = require('port-selector-darwin-x64')
             }
         } catch (e) {
             loadError = e
         }
         break
     case 'arm64':
-        localFileExisted = existsSync(join(__dirname, 'port-selector.darwin-arm64.node'))
+        localFileExisted = existsSync(
+            join(__dirname, 'port-selector.darwin-arm64.node')
+        )
         try {
             if (localFileExisted) {
                 nativeBinding = require('./port-selector.darwin-arm64.node')
             } else {
-                nativeBinding = require('@forwardx/port-selector-darwin-arm64')
+                nativeBinding = require('port-selector-darwin-arm64')
             }
         } catch (e) {
             loadError = e
@@ -133,7 +141,7 @@ case 'freebsd':
         if (localFileExisted) {
             nativeBinding = require('./port-selector.freebsd-x64.node')
         } else {
-            nativeBinding = require('@forwardx/port-selector-freebsd-x64')
+            nativeBinding = require('port-selector-freebsd-x64')
         }
     } catch (e) {
         loadError = e
@@ -143,23 +151,27 @@ case 'linux':
     switch (arch) {
     case 'x64':
         if (isMusl()) {
-            localFileExisted = existsSync(join(__dirname, 'port-selector.linux-x64-musl.node'))
+            localFileExisted = existsSync(
+                join(__dirname, 'port-selector.linux-x64-musl.node')
+            )
             try {
                 if (localFileExisted) {
                     nativeBinding = require('./port-selector.linux-x64-musl.node')
                 } else {
-                    nativeBinding = require('@forwardx/port-selector-linux-x64-musl')
+                    nativeBinding = require('port-selector-linux-x64-musl')
                 }
             } catch (e) {
                 loadError = e
             }
         } else {
-            localFileExisted = existsSync(join(__dirname, 'port-selector.linux-x64-gnu.node'))
+            localFileExisted = existsSync(
+                join(__dirname, 'port-selector.linux-x64-gnu.node')
+            )
             try {
                 if (localFileExisted) {
                     nativeBinding = require('./port-selector.linux-x64-gnu.node')
                 } else {
-                    nativeBinding = require('@forwardx/port-selector-linux-x64-gnu')
+                    nativeBinding = require('port-selector-linux-x64-gnu')
                 }
             } catch (e) {
                 loadError = e
@@ -168,23 +180,27 @@ case 'linux':
         break
     case 'arm64':
         if (isMusl()) {
-            localFileExisted = existsSync(join(__dirname, 'port-selector.linux-arm64-musl.node'))
+            localFileExisted = existsSync(
+                join(__dirname, 'port-selector.linux-arm64-musl.node')
+            )
             try {
                 if (localFileExisted) {
                     nativeBinding = require('./port-selector.linux-arm64-musl.node')
                 } else {
-                    nativeBinding = require('@forwardx/port-selector-linux-arm64-musl')
+                    nativeBinding = require('port-selector-linux-arm64-musl')
                 }
             } catch (e) {
                 loadError = e
             }
         } else {
-            localFileExisted = existsSync(join(__dirname, 'port-selector.linux-arm64-gnu.node'))
+            localFileExisted = existsSync(
+                join(__dirname, 'port-selector.linux-arm64-gnu.node')
+            )
             try {
                 if (localFileExisted) {
                     nativeBinding = require('./port-selector.linux-arm64-gnu.node')
                 } else {
-                    nativeBinding = require('@forwardx/port-selector-linux-arm64-gnu')
+                    nativeBinding = require('port-selector-linux-arm64-gnu')
                 }
             } catch (e) {
                 loadError = e
@@ -192,12 +208,14 @@ case 'linux':
         }
         break
     case 'arm':
-        localFileExisted = existsSync(join(__dirname, 'port-selector.linux-arm-gnueabihf.node'))
+        localFileExisted = existsSync(
+            join(__dirname, 'port-selector.linux-arm-gnueabihf.node')
+        )
         try {
             if (localFileExisted) {
                 nativeBinding = require('./port-selector.linux-arm-gnueabihf.node')
             } else {
-                nativeBinding = require('@forwardx/port-selector-linux-arm-gnueabihf')
+                nativeBinding = require('port-selector-linux-arm-gnueabihf')
             }
         } catch (e) {
             loadError = e
@@ -218,16 +236,7 @@ if (!nativeBinding) {
     throw new Error('Failed to load native binding')
 }
 
-const {
-    isFree,
-    isFreeTcp,
-    isFreeUdp,
-    randomFreePort,
-    randomFreeTcpPort,
-    randomFreeUdpPort,
-    selectFromGivenPort,
-    selectFreePort
-} = nativeBinding
+const { isFree, isFreeTcp, isFreeUdp, randomFreePort, randomFreeTcpPort, randomFreeUdpPort, selectFromGivenPort, selectFreePort } = nativeBinding
 
 module.exports.isFree = isFree
 module.exports.isFreeTcp = isFreeTcp
