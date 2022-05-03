@@ -1,5 +1,5 @@
 {
-    "name": "port-selector",
+    "name": "@forwardx/port-selector",
     "version": "0.1.4",
     "description": "a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.",
     "keywords": [
