@@ -11,21 +11,20 @@ Language : [🇺🇸 English](https://github.com/ZingerLittleBee/port-selector/b
 </div>
 <div align="center">
     
-![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![GitHub Actions CI](https://img.shields.io/github/workflow/status/ZingerLittleBee/port-selector/Test%20CI)](https://github.com/ZingerLittleBee/port-selector/actions)
 ![License](https://img.shields.io/github/license/ZingerLittleBee/port-selector)
     
 </div>
 
 ## Overview
-`port-selector` 是一个使用 TypeScript 编写、底层由 Rust 实现的跨平台 NodeJS 库, 主要提供端口可用性检查和根据条件筛选端口的功能.
+`port-selector` 是一个底层由 Rust 实现的跨平台 NodeJS 库, 主要提供端口可用性检查和根据条件筛选端口的功能.
 
 ## Install
-```shell
+```bash
 npm install port-selector
-or
+# or
 yarn add port-selector
-or
+# or
 pnpm i port-selector
 ```
 
@@ -96,7 +95,7 @@ function selectFromGivenPort(starterPort: number): number
 ### `selectFreePort`
 根据 `Selector` 参数约束获取一个满足条件的端口
 ```ts
-function selectFreePort(selector: Selector): number
+function selectFreePort(selector?: Selector): number
 ```
 
 ```ts
@@ -116,3 +115,5 @@ export type Selector = {
     maxRandomTimes?: number
 }
 ```
+## Thanks
+[napi-rs]("https://github.com/napi-rs/napi-rs")

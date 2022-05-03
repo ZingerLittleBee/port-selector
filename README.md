@@ -10,7 +10,6 @@ Language : 🇺🇸 English | [🇨🇳 简体中文](https://github.com/ZingerL
 </div>
 <div align="center">
     
-![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![GitHub Actions CI](https://img.shields.io/github/workflow/status/ZingerLittleBee/port-selector/Test%20CI)](https://github.com/ZingerLittleBee/port-selector/actions)
 ![License](https://img.shields.io/github/license/ZingerLittleBee/port-selector)
     
@@ -18,14 +17,14 @@ Language : 🇺🇸 English | [🇨🇳 简体中文](https://github.com/ZingerL
 
 ## Overview
 
-`port-selector` is a cross-platform Node library written in TypeScript and implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.
+`port-selector` is a cross-platform NodeJS library implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.
 
 ## Install
-```shell
+```bash
 npm install port-selector
-or
+# or
 yarn add port-selector
-or
+# or
 pnpm i port-selector
 ```
 
@@ -96,7 +95,7 @@ function selectFromGivenPort(starterPort: number): number
 ### `selectFreePort`
 Gets a matching port based on the `Selector` parameter constraint
 ```ts
-function selectFreePort(selector: Selector): number
+function selectFreePort(selector?: Selector): number
 ```
 
 ```ts
@@ -118,3 +117,6 @@ export type Selector = {
     maxRandomTimes?: number
 }
 ```
+
+## Thanks
+[napi-rs]("https://github.com/napi-rs/napi-rs")
