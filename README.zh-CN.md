@@ -87,7 +87,7 @@ function randomFreeUdpPort(): number
 ### `selectFromGivenPort`
 从 `starterPort` 开始检查, 返回第一个可用端口
 
-如果 `starterPort` 可用, 则返回; 否则 `starterPort += starterPort`, 直到端口可用
+如果 `starterPort` 可用, 则返回; 否则 `starterPort += 1`, 直到端口可用
 ```ts
 function selectFromGivenPort(starterPort: number): number
 ```
