@@ -87,7 +87,7 @@ function randomFreeUdpPort(): number
 ### `selectFromGivenPort`
 Check from `starterPort` and return the first available port
 
-Return if `starterPort` is available; Otherwise `starterPort += starterPort` until the port is available
+Return if `starterPort` is available; Otherwise `starterPort += 1` until the port is available
 ```ts
 function selectFromGivenPort(starterPort: number): number
 ```
