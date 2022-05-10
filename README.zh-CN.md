@@ -3,23 +3,26 @@ Language : [🇺🇸 English](https://github.com/ZingerLittleBee/port-selector/b
 
 <h1 align="center">port-selector</h1>
 <div align="center">
-    
+
 [![NPM Version](https://img.shields.io/npm/v/port-selector)](https://www.npmjs.com/package/port-selector)
 [![NPM Downloads](https://img.shields.io/npm/dt/port-selector)](https://www.npmjs.com/package/port-selector)
 ![Bundle Size](https://img.shields.io/bundlephobia/minzip/port-selector)
 
 </div>
 <div align="center">
-    
+
 [![GitHub Actions CI](https://img.shields.io/github/workflow/status/ZingerLittleBee/port-selector/Test%20CI)](https://github.com/ZingerLittleBee/port-selector/actions)
 ![License](https://img.shields.io/github/license/ZingerLittleBee/port-selector)
-    
+
 </div>
 
 ## Overview
 `port-selector` 是一个底层由 Rust 实现的跨平台 NodeJS 库, 主要提供端口可用性检查和根据条件筛选端口的功能.
 
-## Install
+## Getting Started
+### Prerequisites
+- [Node.js](https://nodejs.org) (>= 10.0.0 required, LTS preferred)
+### Installation
 ```bash
 npm install port-selector
 # or

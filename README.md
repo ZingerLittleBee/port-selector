@@ -2,24 +2,27 @@ Language : 🇺🇸 English | [🇨🇳 简体中文](https://github.com/ZingerL
 
 <h1 align="center">port-selector</h1>
 <div align="center">
-    
+
 [![NPM Version](https://img.shields.io/npm/v/port-selector)](https://www.npmjs.com/package/port-selector)
 [![NPM Downloads](https://img.shields.io/npm/dt/port-selector)](https://www.npmjs.com/package/port-selector)
 ![Bundle Size](https://img.shields.io/bundlephobia/minzip/port-selector)
 
 </div>
 <div align="center">
-    
+
 [![GitHub Actions CI](https://img.shields.io/github/workflow/status/ZingerLittleBee/port-selector/Test%20CI)](https://github.com/ZingerLittleBee/port-selector/actions)
 ![License](https://img.shields.io/github/license/ZingerLittleBee/port-selector)
-    
+
 </div>
 
 ## Overview
 
 `port-selector` is a cross-platform NodeJS library implemented in Rust. It mainly provides port availability checking and filtering ports based on filter conditions.
 
-## Install
+## Getting Started
+### Prerequisites
+- [Node.js](https://nodejs.org) (>= 10.0.0 required, LTS preferred)
+### Installation
 ```bash
 npm install port-selector
 # or
