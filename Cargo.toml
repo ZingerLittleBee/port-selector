@@ -10,7 +10,7 @@ crate-type = ["cdylib"]
 [dependencies]
 # Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
 napi = { version = "2.4.2", default-features = false, features = ["napi4"] }
-napi-derive = "2.4.0"
+napi-derive = "2.4.1"
 port-selector = "0.1.4"
 
 [build-dependencies]
