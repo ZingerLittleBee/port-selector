@@ -14,7 +14,7 @@ napi-derive = "2.4.1"
 port-selector = "0.1.6"
 
 [build-dependencies]
-napi-build = "2.0.0"
+napi-build = "2.0.1"
 
 [profile.release]
 lto = true
