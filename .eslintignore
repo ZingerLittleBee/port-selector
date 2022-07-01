@@ -3,3 +3,4 @@ dist
 mock
 changelog.config.js
 *.json
+index.js
